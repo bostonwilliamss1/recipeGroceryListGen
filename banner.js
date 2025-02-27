@@ -22,6 +22,9 @@ function randomImage(apiData) {
     }
 }
 
+setInterval(() => randomImage(apiData), 3000);
+
+
 // function shoppingListTemplate(displayIngredients) {
 //     return `
 //     <h2>Shopping List</h2>
