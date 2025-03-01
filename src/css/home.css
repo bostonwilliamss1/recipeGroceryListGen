@@ -1,0 +1,33 @@
+/* import css styles (root) */
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    margin: 0;
+}
+
+.shopping-list {
+    grid-column: span 1;
+
+}
+
+.recipes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 2 / 3;
+}
+
+.filters {
+    grid-column: 3/4;
+}
+
+footer {
+    grid-column:span 4;
+
+}
+
+@media screen and (max-width: 760px) {
+    .filters {
+        display: none;
+    }
+}

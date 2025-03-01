@@ -4,13 +4,13 @@
 const shoppingList = document.querySelector(".shoppingList");
 const recipes = document.querySelector(".recipes");
 
-function bannerTemplate(imageUrl) {
+export function bannerTemplate(imageUrl) {
     return `
-    <img src="${imageUrl}" alt="${imageUrl}">
+    <img src="${imageUrl}" alt="${imageUrl}" class="bannerImg">
     `
 }
 
-function randomImage(apiData) {
+export function randomImage(apiData) {
     const randomIndex = Math.floor(Math.random() * apiData.images.length);
     const randomImageUrl = apiData.images[randomIndex]
     const bannerContainer = document.querySelector(".hero-banner");
