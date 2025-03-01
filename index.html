@@ -7,20 +7,44 @@
   </head>
     <title>Recipe Grocery List Generator</title>
     <link rel="stylesheet" href="css/home.css">
+    <script src="modal.js" defer></script>
 </head>
 <body>
     <header>
-        <h1 class="title">Grocery Organizer</h1>
+        <section>
+            <h1 class="title">NomNomList</h1>
+            
+
+        </section>
+        
         <form id="search">
             <input type="text" class="search">
             <button type="submit"><img src="images/magnifying-glass-8079542_1280.jpg" alt="search magnifying glass"></button>
         </form>
+        <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" aria-hidden="true">
+            <section class="modal-content">
+              <button class="close-button" aria-label="Close modal">&times;</button>
+              <h2 id="modal-title">Login</h2>
+              <form>
+                <div class="form-group">
+                  <label for="username" id="username-label">Username</label>
+                  <input type="text" id="username" placeholder="Enter username" aria-labelledby="username-label" />
+                </div>
+                <div class="form-group">
+                  <label for="password" id="password-label">Password</label>
+                  <input type="password" id="password" placeholder="Enter password" aria-labelledby="password-label" />
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+              </form>
+            </section>
+          </div>
         <div id="hamburger">
             <nav>
                 <a href="recipes.html">All Recipes</a>
                 <a href="shoppingList.html">Shopping List</a>
                 <a href="weeklyMenu.html">Weekly Menu</a>
-                <a href="about.html">About Us</a>                
+                <a href="about.html">About Us</a>     
+                <button id="open-modal">Login</button>           
             </nav>
         </div>
         <div class="hero-banner"></div>
