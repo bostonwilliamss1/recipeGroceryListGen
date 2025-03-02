@@ -1,7 +1,8 @@
 .recipes {
     border-radius: 4px;
-    background-color: rgb(254, 231, 203);
+    background-color: rgb(250, 242, 232);
     box-shadow: 2px 2px 2px rgba(65, 46, 38, 0.5);
+    /* margin: 30px; */
     transform: scale(1);
     transition: 0.5s ease;
 }

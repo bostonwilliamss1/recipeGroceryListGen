@@ -1,9 +1,28 @@
 /* import css styles (root) */
 
+html {
+    scrollbar-width: none;
+}
+
 body {
+    max-width: 1600px;
+    display: flex;
+    flex-direction: column;
+   
+    margin: 0;
+}
+
+.hero-banner {
+    background-color: black;
+    width: 100%;
+    height: 400px;
+}
+
+main {
+    max-height: fit-content;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    margin: 0;
+    margin: 40px;
 }
 
 .shopping-list {
@@ -12,18 +31,20 @@ body {
 }
 
 .recipes {
+    height: 250px;
+    width: 200px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column: 2 / 3;
+    /* scrollbar-width: 10px; */
+    /* grid-column: 2 / 3; */
 }
-
 .filters {
     grid-column: 3/4;
 }
 
 footer {
-    grid-column:span 4;
-
+    background-color: blanchedalmond;
+    padding: 10px;
 }
 
 @media screen and (max-width: 760px) {

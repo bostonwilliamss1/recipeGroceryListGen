@@ -1,5 +1,7 @@
-import './css/style.css'
-import {bannerTemplate, randomImage} from 'banner.mjs'
+import "../css/style.css";
+import {bannerTemplate, randomImage} from 'banner.mjs';
+import { hideSearchBar } from './header.mjs';
+import { searchRecipes } from "./recipesApi.mjs";
 // import javascriptLogo from './javascript.svg'
 // import viteLogo from '/vite.svg'
 // import { setupCounter } from './counter.js'
@@ -28,8 +30,10 @@ import {bannerTemplate, randomImage} from 'banner.mjs'
 
 // setupCounter(document.querySelector('#counter'))
 
-function init() {
+async function init() {
+  const recipeData = await searchRecipes();
   setInterval(() => randomImage(apiData), 3000);
+  hideSearchBar();
 }
 
 init();
