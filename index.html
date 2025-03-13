@@ -11,7 +11,7 @@
     />
     <title>Recipe Grocery List Generator</title>
     <link rel="stylesheet" href="./src/css/style.css" />
-    <script type="module" src="./src/main.js" defer></script>
+    <script type="module" src="./src/js/main.js" defer></script>
   </head>
   <body>
     <header>
@@ -39,9 +39,15 @@
     </header>
     <div class="hero-banner"></div>
     <main>
-      <div class="shopping-list"></div>
-      <div class="recipes"></div>
-      <div class="filters">Filters:</div>
+      <section class="shopping-list">
+        <h2>Shopping List</h2>
+        <ul id="shopping-items"></ul>
+      </section>
+
+      <section class="recipes">
+        <h2>Recipes</h2>
+        <div id="recipe-container"></div>
+      </section>
     </main>
     <footer>
       &copy; 2025
