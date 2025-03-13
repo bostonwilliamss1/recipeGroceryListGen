@@ -1,4 +1,8 @@
 import "../style.css";
+import "../css/style.css";
+import { bannerTemplate, randomImage } from "./banner.mjs";
+import { hideSearchBar } from "./header.mjs";
+import { searchRecipes as fetchRecipesFromAPI } from "./recipesApi.mjs";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = `${import.meta.env.VITE_API_URL}&apiKey=${API_KEY}`;
@@ -60,27 +64,24 @@ function addToShoppingList(item) {
   shoppingList.appendChild(listItem);
 }
 
-document.querySelector("#search").addEventListener("submit", (event) => {
+document.querySelector("#search").addEventListener("submit", async (event) => {
   event.preventDefault();
   const query = document.querySelector(".search").value.trim();
   if (query) {
-    searchRecipes(query);
+    try {
+      const data = await fetchRecipesFromAPI(query);
+      displayRecipes(data.results);
+    } catch (error) {
+      console.error("Search error:", error);
+    }
   }
 });
 
-async function searchRecipes(query) {
-  try {
-    const searchUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${API_KEY}&number=5`;
-    const response = await fetch(searchUrl);
-    if (!response.ok) {
-      throw new Error("Failed to fetch search results");
-    }
-
-    const data = await response.json();
-    displayRecipes(data.results);
-  } catch (error) {
-    console.error("Search error:", error);
-  }
+async function init() {
+  await fetchRecipes();
+  const defaultRecipes = await fetchRecipesFromAPI("chicken"); // Provide a default query
+  displayRecipes(defaultRecipes.results);
+  hideSearchBar();
 }
 
-fetchRecipes();
+document.addEventListener("DOMContentLoaded", init);

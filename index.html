@@ -16,25 +16,28 @@
   <body>
     <header>
       <h1 class="title">Grocery Organizer</h1>
-      <form id="search">
-        <input
-          type="text"
-          class="search"
-          placeholder="Search for a recipe..."
-          aria-label="Search for recipes"
-        />
-        <button type="submit">🔍</button>
-      </form>
-      <nav>
-        <ul>
-          <li><a href="recipes.html">All Recipes</a></li>
-          <li><a href="shoppingList.html">Shopping List</a></li>
-          <li><a href="weeklyMenu.html">Weekly Menu</a></li>
-          <li><a href="about.html">About Us</a></li>
-        </ul>
-      </nav>
+      <div class="headerInfo">
+        <form id="search">
+          <input type="text" class="search" />
+          <button type="submit" id="searchBtn">
+            <img
+              src="images/magnifying-glass-8079542_1280.jpg"
+              alt="search magnifying glass"
+              id="searchImg"
+            />
+          </button>
+        </form>
+        <div id="hamburger">
+          <nav>
+            <a href="recipes.html">All Recipes</a>
+            <a href="shoppingList.html">Shopping List</a>
+            <a href="weeklyMenu.html">Weekly Menu</a>
+            <a href="about.html">About Us</a>
+          </nav>
+        </div>
+      </div>
     </header>
-
+    <div class="hero-banner"></div>
     <main>
       <section class="shopping-list">
         <h2>Shopping List</h2>
