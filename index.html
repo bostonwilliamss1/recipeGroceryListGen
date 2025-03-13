@@ -16,28 +16,25 @@
   <body>
     <header>
       <h1 class="title">Grocery Organizer</h1>
-      <div class="headerInfo">
-        <form id="search">
-          <input type="text" class="search" />
-          <button type="submit" id="searchBtn">
-            <img
-              src="images/magnifying-glass-8079542_1280.jpg"
-              alt="search magnifying glass"
-              id="searchImg"
-            />
-          </button>
-        </form>
-        <div id="hamburger">
-          <nav>
-            <a href="recipes.html">All Recipes</a>
-            <a href="shoppingList.html">Shopping List</a>
-            <a href="weeklyMenu.html">Weekly Menu</a>
-            <a href="about.html">About Us</a>
-          </nav>
-        </div>
-      </div>
+      <form id="search">
+        <input
+          type="text"
+          class="search"
+          placeholder="Search for a recipe..."
+          aria-label="Search for recipes"
+        />
+        <button type="submit">🔍</button>
+      </form>
+      <nav>
+        <ul>
+          <li><a href="recipes.html">All Recipes</a></li>
+          <li><a href="shoppingList.html">Shopping List</a></li>
+          <li><a href="weeklyMenu.html">Weekly Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
     </header>
-    <div class="hero-banner"></div>
+
     <main>
       <section class="shopping-list">
         <h2>Shopping List</h2>
@@ -49,17 +46,20 @@
         <div id="recipe-container"></div>
       </section>
     </main>
+
     <footer>
-      &copy; 2025
-      <a href="facebook.com"
-        ><img src="facebook.jpeg" alt="" target="_blank"
-      /></a>
-      <a href="pinterest.com"
-        ><img src="pinterest.jpeg" alt="" target="_blank"
-      /></a>
-      <a href="instagram.com"
-        ><img src="instagram.jpeg" alt="" target="_blank"
-      /></a>
+      <p>&copy; 2025 Grocery Organizer</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com" target="_blank">
+          <img src="facebook.jpeg" alt="Facebook" />
+        </a>
+        <a href="https://www.pinterest.com" target="_blank">
+          <img src="pinterest.jpeg" alt="Pinterest" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="instagram.jpeg" alt="Instagram" />
+        </a>
+      </div>
     </footer>
   </body>
 </html>
