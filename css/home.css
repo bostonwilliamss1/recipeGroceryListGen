@@ -1,110 +1,146 @@
-/* import css styles (root) */
+/* Updated humbergur menu css */
 
-.overlay {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-.overlay.open {
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-}
-
-.menu-trigger {
-  display: inline-block;
-  width: 36px;
-  height: 28px;
-  vertical-align: middle;
-  cursor: pointer;
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  z-index: 100;
-  transform: translateX(0);
-  transition: transform 0.5s;
-}
-.menu-trigger.active {
-  transform: translateX(-250px);
-}
-.menu-trigger span {
-  display: inline-block;
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background-color: #754668;
-}
-.menu-trigger.active span {
-  background-color: #754668;
-}
-.menu-trigger span:nth-of-type(1) {
-  top: 0;
-}
-.menu-trigger.active span:nth-of-type(1) {
-  transform: translateY(12px) rotate(-45deg);
-}
-.menu-trigger span:nth-of-type(2) {
-  top: 12px;
-}
-.menu-trigger.active span:nth-of-type(2) {
-  opacity: 0;
-}
-.menu-trigger span:nth-of-type(3) {
-  bottom: 0;
-}
-.menu-trigger.active span:nth-of-type(3) {
-  transform: translateY(-12px) rotate(45deg);
-}
-
+/* Hide navigation completely on large screens */
 nav {
-  width: 250px;
-  height: 100%;
-  padding-top: 100px;
-  background-color: #90a583;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  transform: translate(250px);
-  transition: all 0.5s;
-}
-nav.open {
-  transform: translateZ(0);
-  padding-top: 20px;
-}
-nav a {
-  /* color: #fff; */
-  text-align: center;
-  padding: 10px 0;
-  display: block;
-  padding: 1rem;
-  color: white;
-  background-color: #90a583;
-  text-decoration: none;
-  transition: all 0.3s;
+  display: none;
 }
 
-nav li a:hover {
-  color: #754668;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 7px;
+/* Completely hide menu trigger and overlay by default (for large screens) */
+.menu-trigger, .overlay {
+  display: none;
+}
+
+/* Mobile styles - when screen width is 576px or less */
+@media screen and (max-width: 576px) {
+  /* Show menu trigger for mobile */
+  .menu-trigger {
+    display: inline-block;
+    width: 36px;
+    height: 28px;
+    vertical-align: middle;
+    cursor: pointer;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 100;
+    transform: translateX(0);
+    transition: transform 0.5s;
+  }
+  
+  .menu-trigger.active {
+    transform: translateX(0); /* Keep X in the same position */
+  }
+  
+  .menu-trigger span {
+    display: inline-block;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #754668;
+    transition: all 0.3s;
+  }
+  
+  .menu-trigger.active span {
+    background-color: #754668;
+  }
+  
+  .menu-trigger span:nth-of-type(1) {
+    top: 0;
+  }
+  
+  .menu-trigger.active span:nth-of-type(1) {
+    transform: translateY(12px) rotate(-45deg);
+  }
+  
+  .menu-trigger span:nth-of-type(2) {
+    top: 12px;
+  }
+  
+  .menu-trigger.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  
+  .menu-trigger span:nth-of-type(3) {
+    bottom: 0;
+  }
+  
+  .menu-trigger.active span:nth-of-type(3) {
+    transform: translateY(-12px) rotate(45deg);
+  }
+  
+  /* Show overlay for mobile */
+  .overlay {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .overlay.open {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+  
+  /* Mobile navigation styling - display in mobile only */
+  nav {
+    display: block;
+    width: 250px;
+    height: 100%;
+    padding-top: 80px;
+    background-color: #90a583;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    transform: translateX(250px); /* Start position - menu is offscreen */
+    transition: all 0.5s;
+  }
+  
+  nav.open {
+    transform: translateX(0); /* Open position - menu is visible */
+  }
+  
+  nav ul {
+    display: block;
+    padding: 20px;
+  }
+  
+  nav li {
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+  
+  nav a {
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    display: block;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  nav li a:hover {
+    color: #754668;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+  }
 }
 
 * {
   box-sizing: border-box;
 }
+
 ul {
   list-style: none;
   padding-left: 0px;
-  padding: 20px;
 }
