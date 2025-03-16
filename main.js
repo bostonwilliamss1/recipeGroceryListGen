@@ -1,4 +1,4 @@
-// Humbergur menu js
+// Hamburger menu js
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuTrigger = document.querySelector('.menu-trigger');
