@@ -3,6 +3,7 @@ import "../css/style.css";
 import { bannerTemplate, randomImage } from "./banner.mjs";
 import { hideSearchBar } from "./header.mjs";
 import { searchRecipes as fetchRecipesFromAPI } from "./recipesApi.mjs";
+import { checked } from "./shoppingList.mjs";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = `${import.meta.env.VITE_API_URL}&apiKey=${API_KEY}`;
