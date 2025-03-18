@@ -15,54 +15,29 @@
   </head>
   <body>
     <header>
-      <h1 class="title">Grocery Organizer</h1>
-      <div class="headerInfo">
-        <form id="search">
-          <input type="text" class="search" />
-          <button type="submit" id="searchBtn">
-            <img
-              src="images/magnifying-glass-8079542_1280.jpg"
-              alt="search magnifying glass"
-              id="searchImg"
-            />
-          </button>
-        </form>
-        <div id="hamburger">
-          <nav>
-            <a href="recipes.html">All Recipes</a>
-            <a href="shoppingList.html">Shopping List</a>
-            <a href="weeklyMenu.html">Weekly Menu</a>
-            <a href="about.html">About Us</a>
-          </nav>
-        </div>
+      <h1 class="title"></h1>
+      <div class="search"></div>
+      <!-- navigation -->
+      <div class="menu-trigger" href="">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
+      <nav>
+        <ul>
+          <li><a href="#">Recipes</a></li>
+          <li><a href="#">Shopping list</a></li>
+          <li><a href="#">About us</a></li>
+        </ul>
+      </nav>
+      <div class="overlay"></div>
+      <div class="hero-banner"></div>
     </header>
-    <div class="hero-banner"></div>
     <main>
-      <section class="shopping-list">
-        <h2>Shopping List</h2>
-        <ul id="shopping-items"></ul>
-      </section>
-
-      <section class="recipes">
-        <h2>Recipes</h2>
-        <div id="recipe-container"></div>
-      </section>
+      <div class="shopping-list"></div>
+      <div class="recipes"></div>
     </main>
 
-    <footer>
-      <p>&copy; 2025 Grocery Organizer</p>
-      <div class="social-links">
-        <a href="https://www.facebook.com" target="_blank">
-          <img src="facebook.jpeg" alt="Facebook" />
-        </a>
-        <a href="https://www.pinterest.com" target="_blank">
-          <img src="pinterest.jpeg" alt="Pinterest" />
-        </a>
-        <a href="https://www.instagram.com" target="_blank">
-          <img src="instagram.jpeg" alt="Instagram" />
-        </a>
-      </div>
-    </footer>
+    <script src="main.js"></script>
   </body>
 </html>
