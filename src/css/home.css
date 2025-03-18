@@ -21,6 +21,8 @@ body {
 main {
   max-height: fit-content;
   display: grid;
+  /* grid-template-columns: 10% 80% 10%; */
+
   grid-template-columns: 1fr 2fr 1fr;
   margin: 40px;
 }
