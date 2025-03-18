@@ -24,6 +24,10 @@ export function randomImage(apiData) {
 
 setInterval(() => randomImage(apiData), 3000);
 
+document.getElementById('searchBtn').addEventListener("submit", );
+export function searchSubmit() {
+    window.location.href = "search.html";
+}
 
 // function shoppingListTemplate(displayIngredients) {
 //     return `
