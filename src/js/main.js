@@ -24,18 +24,24 @@ async function fetchRecipes() {
 
 function displayRecipes(recipes) {
   const recipeContainer = document.querySelector("#recipe-container");
-  recipeContainer.innerHTML = "";
+  recipeContainer.innerHTML = ""; // Clear previous results
 
   recipes.forEach((recipe) => {
     const recipeElement = document.createElement("div");
     recipeElement.classList.add("recipe-card");
 
+    const ingredientsList = recipe.extendedIngredients
+      ? recipe.extendedIngredients.map((ing) => ing.original).join(", ")
+      : "No ingredients available";
+
     recipeElement.innerHTML = `
       <h3>${recipe.title}</h3>
-      <img src="${recipe.image}" alt="${recipe.title}" width="250">
+      <img src="${recipe.image}" alt="${recipe.title}">
       <p><strong>Servings:</strong> ${recipe.servings}</p>
       <p><strong>Ready in:</strong> ${recipe.readyInMinutes} min</p>
-      <button class="add-to-list" data-title="${recipe.title}">Add to Shopping List</button>
+      <button class="add-to-list" data-ingredients='${JSON.stringify(
+        recipe.extendedIngredients
+      )}'>Add to Shopping List</button>
     `;
 
     recipeContainer.appendChild(recipeElement);
@@ -43,26 +49,31 @@ function displayRecipes(recipes) {
 
   document.querySelectorAll(".add-to-list").forEach((button) => {
     button.addEventListener("click", (event) => {
-      const recipeTitle = event.target.getAttribute("data-title");
-      addToShoppingList(recipeTitle);
+      const ingredients = JSON.parse(
+        event.target.getAttribute("data-ingredients")
+      );
+      addToShoppingList(ingredients);
     });
   });
 }
 
-function addToShoppingList(item) {
+function addToShoppingList(ingredients) {
   const shoppingList = document.querySelector("#shopping-items");
-  const listItem = document.createElement("li");
-  listItem.textContent = item;
 
-  const removeButton = document.createElement("button");
-  removeButton.textContent = "❌";
-  removeButton.classList.add("remove-item");
-  removeButton.addEventListener("click", () => {
-    shoppingList.removeChild(listItem);
+  ingredients.forEach((ingredient) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = ingredient.original;
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "❌";
+    removeButton.classList.add("remove-item");
+    removeButton.addEventListener("click", () => {
+      shoppingList.removeChild(listItem);
+    });
+
+    listItem.appendChild(removeButton);
+    shoppingList.appendChild(listItem);
   });
-
-  listItem.appendChild(removeButton);
-  shoppingList.appendChild(listItem);
 }
 
 document.querySelector("#search").addEventListener("submit", async (event) => {
