@@ -29,6 +29,11 @@ export function searchSubmit() {
     window.location.href = "search.html";
 }
 
+document.getElementById('searchBtn').addEventListener("submit", );
+export function searchSubmit() {
+    window.location.href = "search.html";
+}
+
 // function shoppingListTemplate(displayIngredients) {
 //     return `
 //     <h2>Shopping List</h2>
