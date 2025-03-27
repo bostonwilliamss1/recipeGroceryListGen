@@ -1,9 +1,6 @@
 import "../style.css";
 import "../css/style.css";
-import { bannerTemplate, randomImage } from "./banner.mjs";
 import { hideSearchBar } from "./header.mjs";
-import { searchRecipes as fetchRecipesFromAPI } from "./recipesApi.mjs";
-import { checked } from "./shoppingList.mjs";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = `${import.meta.env.VITE_API_URL}&apiKey=${API_KEY}`;
@@ -24,7 +21,12 @@ async function fetchRecipes() {
 
 function displayRecipes(recipes) {
   const recipeContainer = document.querySelector("#recipe-container");
-  recipeContainer.innerHTML = ""; // Clear previous results
+  if (!recipeContainer) {
+    console.warn("⚠️ #recipe-container not found. Skipping render.");
+    return;
+  }
+
+  recipeContainer.innerHTML = "";
 
   recipes.forEach((recipe) => {
     const recipeElement = document.createElement("div");
@@ -74,6 +76,41 @@ function addToShoppingList(ingredients) {
     listItem.appendChild(removeButton);
     shoppingList.appendChild(listItem);
   });
+
+  let savedList = JSON.parse(localStorage.getItem("shoppingList")) || [];
+  const originals = ingredients.map((ing) => ing.original);
+  savedList.push(...originals);
+  localStorage.setItem("shoppingList", JSON.stringify(savedList));
+}
+
+function removeFromLocalStorage(item) {
+  let savedList = JSON.parse(localStorage.getItem("shoppingList")) || [];
+  savedList = savedList.filter((i) => i !== item);
+  localStorage.setItem("shoppingList", JSON.stringify(savedList));
+}
+
+function loadShoppingList() {
+  const shoppingList = document.querySelector("#shopping-items");
+  if (!shoppingList) return;
+
+  const savedList = JSON.parse(localStorage.getItem("shoppingList")) || [];
+
+  savedList.forEach((item) => {
+    const listItem = document.createElement("li");
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "❌";
+    removeButton.classList.add("remove-item");
+    removeButton.addEventListener("click", () => {
+      shoppingList.removeChild(listItem);
+      removeFromLocalStorage(item);
+    });
+
+    listItem.appendChild(document.createTextNode(item));
+    listItem.appendChild(removeButton);
+
+    shoppingList.appendChild(listItem);
+  });
 }
 
 document.querySelector("#search").addEventListener("submit", async (event) => {
@@ -89,11 +126,14 @@ document.querySelector("#search").addEventListener("submit", async (event) => {
   }
 });
 
-async function init() {
-  await fetchRecipes();
-  const defaultRecipes = await fetchRecipesFromAPI("chicken"); // Provide a default query
-  displayRecipes(defaultRecipes.results);
+function init() {
+  fetchRecipes();
   hideSearchBar();
+
+  const shoppingListContainer = document.querySelector("#shopping-items");
+  if (shoppingListContainer) {
+    loadShoppingList();
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);
