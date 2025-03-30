@@ -59,6 +59,8 @@ function displayRecipes(recipes) {
   });
 }
 
+
+
 function addToShoppingList(ingredients) {
   const shoppingList = document.querySelector("#shopping-items");
 
@@ -112,6 +114,30 @@ function loadShoppingList() {
     shoppingList.appendChild(listItem);
   });
 }
+
+// Username localStorage connection
+
+function usernameTemplate(username) {
+  return `<p class="user">${username}</p>`;
+}
+
+function renderUsername(username) {
+  const display = document.querySelector("#username");
+  display.innerHTML = usernameTemplate(username);
+
+}
+
+function updateLocalStorage() {
+  if (currentUsername) {
+      localStorage.setItem("Shopping List" + currentUsername, JSON.stringify(shoppingList));
+  }
+}
+
+document.querySelector("#login-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  updateLocalStorage();
+})
+// End of username js
 
 document.querySelector("#search").addEventListener("submit", async (event) => {
   event.preventDefault();
