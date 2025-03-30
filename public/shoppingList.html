@@ -10,9 +10,9 @@
       crossorigin="anonymous"
     />
     <title>Nom Nom List</title>
-    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="stylesheet" href="../src/css/style.css" />
     <link rel="stylesheet" href="../src/css/shoppingList.css">
-    <script type="module" src="./src/js/main.js" defer></script>
+    <script type="module" src="../src/js/main.js" defer></script>
     <script type="module" src="../src/js/shoppingList.js" defer></script>
   </head>
   <body>
@@ -30,18 +30,18 @@
           </button>
         </form>
         <div id="hamburger">
-          <nav>
-            <a href="search.html">All Recipes</a>
-            <a href="shoppingList.html">Shopping List</a>
-            <a href="weeklyMenu.html">Weekly Menu</a>
-            <a href="about.html">About Us</a>
-          </nav>
+        <nav class="navbar">
+          <a href="index.html">All Recipes</a>
+          <a href="./public/shoppingList.html">Shopping List</a>
+          <a href="./public/search.html">Search Recipes</a>
+          <a href="./public/aboutUs.html">About Us</a>
+        </nav>
         </div>
       </div>
     </header>
 
     <main>
-      <div class="filter">
+      <div class="filters">
         <h2>Filter</h2>
       </div>
       <div class="list">
@@ -78,5 +78,10 @@
         </a>
       </div>
     </footer>
+    <form action="submit" id="login-form">
+      <label for="username"></label>
+      <input type="text" id="username">
+      <button type="submit" id="login-btn">Login</button>
+    </form>
   </body>
 </html>
