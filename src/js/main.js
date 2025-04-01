@@ -59,8 +59,6 @@ function displayRecipes(recipes) {
   });
 }
 
-
-
 function addToShoppingList(ingredients) {
   const shoppingList = document.querySelector("#shopping-items");
 
@@ -115,42 +113,39 @@ function loadShoppingList() {
   });
 }
 
-// Username localStorage connection
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const navbar = document.getElementById("navbar");
 
-function usernameTemplate(username) {
-  return `<p class="user">${username}</p>`;
-}
-
-function renderUsername(username) {
-  const display = document.querySelector("#username");
-  display.innerHTML = usernameTemplate(username);
-
-}
+  hamburger.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
+});
 
 function updateLocalStorage() {
   if (currentUsername) {
-      localStorage.setItem("Shopping List" + currentUsername, JSON.stringify(shoppingList));
+    localStorage.setItem(
+      "Shopping List" + currentUsername,
+      JSON.stringify(shoppingList)
+    );
   }
 }
 
-document.querySelector("#login-form").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  updateLocalStorage();
-})
-// End of username js
-
-document.querySelector("#search").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const query = document.querySelector(".search").value.trim();
-  if (query) {
-    try {
-      const data = await fetchRecipesFromAPI(query);
-      displayRecipes(data.results);
-    } catch (error) {
-      console.error("Search error:", error);
+const searchForm = document.querySelector("#search");
+if (searchForm) {
+  searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const query = document.querySelector(".search").value.trim();
+    if (query) {
+      try {
+        const data = await fetchRecipesFromAPI(query);
+        displayRecipes(data.results);
+      } catch (error) {
+        console.error("Search error:", error);
+      }
     }
-  }
-});
+  });
+}
 
 function init() {
   fetchRecipes();
