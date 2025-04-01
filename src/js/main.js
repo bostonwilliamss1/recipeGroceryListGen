@@ -113,18 +113,39 @@ function loadShoppingList() {
   });
 }
 
-document.querySelector("#search").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const query = document.querySelector(".search").value.trim();
-  if (query) {
-    try {
-      const data = await fetchRecipesFromAPI(query);
-      displayRecipes(data.results);
-    } catch (error) {
-      console.error("Search error:", error);
-    }
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const navbar = document.getElementById("navbar");
+
+  hamburger.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
 });
+
+function updateLocalStorage() {
+  if (currentUsername) {
+    localStorage.setItem(
+      "Shopping List" + currentUsername,
+      JSON.stringify(shoppingList)
+    );
+  }
+}
+
+const searchForm = document.querySelector("#search");
+if (searchForm) {
+  searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const query = document.querySelector(".search").value.trim();
+    if (query) {
+      try {
+        const data = await fetchRecipesFromAPI(query);
+        displayRecipes(data.results);
+      } catch (error) {
+        console.error("Search error:", error);
+      }
+    }
+  });
+}
 
 function init() {
   fetchRecipes();
