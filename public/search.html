@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/src/js/search.js" type="module" defer></script>
+    <title>Recipe Gen - Search</title>
     <link rel="stylesheet" href="/src/css/search.css" />
-
-    <title>Recipe Gen <Search></Search></title>
-  </head>
-  <body>
-  </head>
-  <body>
+    <script src="/src/js/search.js" type="module" defer></script>
+</head>
+<body>
     <header>
         <h1 class="title">Nom Nom List</h1>
         <div class="headerInfo">
             <form id="search">
-                <input type="text" class="search" />
+                <input type="text" class="search" placeholder="Search Recipes" />
                 <button type="submit" id="searchBtn">
-                    <img src="/images/search-icon.svg" alt="search magnifying glass" id="searchImg" />
+                    <img src="/images/search-icon.svg" alt="Search magnifying glass" id="searchImg" />
                 </button>
             </form>
-            <div id="hamburger">
-                <nav class="navbar">
-                  <a href="/index.html">All Recipes</a>
-                  <a href="/public/shoppingList.html">Shopping List</a>
-                  <a href="/public/search.html">Search Recipes</a>
-                  <a href="aboutUs.html">About Us</a>
-                </nav>
-            </div>
+            <nav class="navbar">
+                <a href="/index.html">All Recipes</a>
+                <a href="/public/shoppingList.html">Shopping List</a>
+                <a href="/public/search.html">Search Recipes</a>
+                <a href="aboutUs.html">About Us</a>
+            </nav>
         </div>
-      </div>
     </header>
 
-    <div class="main-content">
+    <main class="main-content">
         <section class="shopping-list">
             <h2>Shopping List</h2>
             <ul id="shopping-items"></ul>
         </section>
+
         <section id="Queried_recipe_container">
             <h1>Recipes</h1>
-           
         </section>
 
-        
-        <section id="Search_filter_container">
+        <aside id="Search_filter_container">
             <form>
                 <fieldset>
-                    <label for="cuisine">Cuisine</label>
+                    <legend>Cuisine</legend>
+                    <label for="cuisine">Select Cuisine:</label>
                     <select id="cuisine" name="cuisine">
                         <option value="null">None</option>
                         <option value="american">American</option>
@@ -73,7 +68,8 @@
                     <label><input type="checkbox" name="diet" value="dairy-free"> Dairy-Free</label>
                 </fieldset>
                 <fieldset>
-                    <label for="meal-type">Meal Type & Occasion:</label>
+                    <legend>Meal Type</legend>
+                    <label for="meal-type">Select Meal Type:</label>
                     <select id="meal-type" name="meal-type">
                         <option value="null">None</option>
                         <option value="breakfast">Breakfast</option>
@@ -84,48 +80,27 @@
                     </select>
                 </fieldset>
             </form>
-        </section>
+        </aside>
+    </main>
 
-     
-
-    </div>
     <footer>
-      <p>&copy; 2025 Grocery Organizer</p>
-      <div class="social-links">
-        <a href="https://www.facebook.com" target="_blank">
-          <img src="./images/facebook2.png" alt="Facebook" />
-        </a>
-        <a href="https://www.pinterest.com" target="_blank">
-          <img src="./images/pinterest1.png" alt="Pinterest" />
-        </a>
-        <a href="https://www.instagram.com" target="_blank">
-          <img src="./images/instgram2.jpeg" alt="Instagram" />
-        </a>
-      </div>
-      <form action="submit">
-        <label for="username"></label>
-        <input type="text" id="username" />
-        <button type="submit">Login</button>
-      </form>
+        <p>&copy; 2025 Grocery Organizer</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="/images/facebook2.png" alt="Facebook" />
+            </a>
+            <a href="https://www.pinterest.com" target="_blank">
+                <img src="/images/pinterest1.png" alt="Pinterest" />
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="/images/instgram2.jpeg" alt="Instagram" />
+            </a>
+        </div>
+        <form action="submit">
+            <label for="username">Username:</label>
+            <input type="text" id="username" />
+            <button type="submit">Login</button>
+        </form>
     </footer>
-  </body>
-      <p>&copy; 2025 Grocery Organizer</p>
-      <div class="social-links">
-        <a href="https://www.facebook.com" target="_blank">
-          <img src="./images/facebook2.png" alt="Facebook" />
-        </a>
-        <a href="https://www.pinterest.com" target="_blank">
-          <img src="./images/pinterest1.png" alt="Pinterest" />
-        </a>
-        <a href="https://www.instagram.com" target="_blank">
-          <img src="./images/instgram2.jpeg" alt="Instagram" />
-        </a>
-      </div>
-      <form action="submit">
-        <label for="username"></label>
-        <input type="text" id="username" />
-        <button type="submit">Login</button>
-      </form>
-    </footer>
-  </body>
+</body>
 </html>
