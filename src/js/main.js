@@ -1,11 +1,11 @@
 // ==== Imports ====
 import "../style.css";
 import "../css/style.css";
-import { hideSearchBar } from "./header.mjs";
 
 // ==== Constants ====
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = `${import.meta.env.VITE_API_URL}&apiKey=${API_KEY}`;
+const recipeContainer = document.querySelector("#recipe-container");
 
 // ==== Fetch & Display Recipes ====
 
@@ -17,6 +17,15 @@ async function fetchRecipes() {
     displayRecipes(data.recipes);
   } catch (error) {
     console.error("Error fetching the recipes:", error);
+
+    if (recipeContainer) {
+      recipeContainer.innerHTML = `
+        <div class="error-message">
+          <h2>😢 Oops! Something went wrong.</h2>
+          <p>We couldn't load recipes from the API. Please try again later.</p>
+        </div>
+      `;
+    }
   }
 }
 
@@ -142,6 +151,14 @@ if (searchForm) {
     }
   });
 }
+
+document.getElementById("search").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = document.querySelector(".search").value.trim();
+  if (query) {
+    window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
+  }
+});
 
 // ==== Hamburger Menu Toggle ====
 

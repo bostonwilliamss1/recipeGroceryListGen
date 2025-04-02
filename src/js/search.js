@@ -34,25 +34,24 @@ async function fetchRecipes(query = "") {
   const mealType = mealTypeSelect.value !== "null" ? mealTypeSelect.value : "";
 
   try {
-
     const searchResponse = await fetch(
       `${API_URL}/complexSearch?apiKey=${API_KEY}&query=${query}&cuisine=${cuisine}&diet=${diet}&type=${mealType}&number=10`
     );
     const searchData = await searchResponse.json();
-    
-   
+
     const recipePromises = searchData.results.map(async (recipePreview) => {
       const detailResponse = await fetch(
         `${API_URL}/${recipePreview.id}/information?apiKey=${API_KEY}`
       );
       return await detailResponse.json();
     });
-    
+
     const detailedRecipes = await Promise.all(recipePromises);
     displayRecipes(detailedRecipes);
   } catch (error) {
     console.error("Error fetching recipes:", error);
-    recipeContainer.innerHTML = "<p>Failed to load recipes. Please try again later.</p>";
+    recipeContainer.innerHTML =
+      "<p>Failed to load recipes. Please try again later.</p>";
   }
 }
 
@@ -61,7 +60,8 @@ function displayRecipes(recipes) {
   recipeContainer.innerHTML = "";
 
   if (recipes.length === 0) {
-    recipeContainer.innerHTML = "<p>No recipes found. Try different search criteria.</p>";
+    recipeContainer.innerHTML =
+      "<p>No recipes found. Try different search criteria.</p>";
     return;
   }
 
@@ -78,7 +78,9 @@ function displayRecipes(recipes) {
       <img src="${recipe.image}" alt="${recipe.title}">
       <p><strong>Servings:</strong> ${recipe.servings}</p>
       <p><strong>Ready in:</strong> ${recipe.readyInMinutes} min</p>
-      <button class="add-to-list" data-ingredients='${JSON.stringify(ingredients)}'>Add to Shopping List</button>
+      <button class="add-to-list" data-ingredients='${JSON.stringify(
+        ingredients
+      )}'>Add to Shopping List</button>
     `;
 
     recipeContainer.appendChild(recipeElement);
@@ -86,7 +88,8 @@ function displayRecipes(recipes) {
 
   document.querySelectorAll(".add-to-list").forEach((button) => {
     button.addEventListener("click", (event) => {
-      const ingredients = JSON.parse(event.target.getAttribute("data-ingredients")) || [];
+      const ingredients =
+        JSON.parse(event.target.getAttribute("data-ingredients")) || [];
       addToShoppingList(ingredients);
     });
   });
@@ -97,7 +100,7 @@ function addToShoppingList(ingredients) {
     alert("No ingredients found for this recipe!");
     return;
   }
-  
+
   let shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
   shoppingList.push(...ingredients);
   localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
@@ -106,18 +109,22 @@ function addToShoppingList(ingredients) {
 
 function loadShoppingList() {
   const shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
-  
+
   if (shoppingList.length === 0) {
     shoppingItems.innerHTML = "<li>Your shopping list is empty</li>";
   } else {
-    shoppingItems.innerHTML = shoppingList.map(item => `
+    shoppingItems.innerHTML = shoppingList
+      .map(
+        (item) => `
       <li>
         <span>${item}</span>
         <button class="remove-item" data-item="${item}">✕</button>
       </li>
-    `).join('');
+    `
+      )
+      .join("");
 
-    document.querySelectorAll(".remove-item").forEach(button => {
+    document.querySelectorAll(".remove-item").forEach((button) => {
       button.addEventListener("click", (e) => {
         const itemToRemove = e.target.getAttribute("data-item");
         removeFromShoppingList(itemToRemove);
@@ -128,7 +135,26 @@ function loadShoppingList() {
 
 function removeFromShoppingList(item) {
   let shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
-  shoppingList = shoppingList.filter(listItem => listItem !== item);
+  shoppingList = shoppingList.filter((listItem) => listItem !== item);
   localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
   loadShoppingList();
 }
+
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+document.addEventListener("DOMContentLoaded", async () => {
+  const query = getQueryParam("query");
+
+  if (query) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const query = getQueryParam("query");
+
+      if (query) {
+        document.querySelector(".search").value = query;
+        fetchRecipes(query);
+      }
+    });
+  }
+});

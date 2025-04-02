@@ -68,7 +68,6 @@ header {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  color:white;
 }
 
 #searchBtn {
@@ -151,6 +150,16 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+}
+
+.error-message {
+  padding: 2rem;
+  background-color: #fff4f4;
+  border: 1px solid #ffcccc;
+  color: #a00;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
 }
 
 /* ==== Shopping Items ==== */
