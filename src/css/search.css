@@ -1,100 +1,178 @@
 @import "partials/header.css";
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-    color: black;
-    display: flex;
-    flex-direction: column;  
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  color: black;
+  display: flex;
+  flex-direction: column;
 }
-
-
-
-
 
 .main-content {
-    display: flex;
-    flex-direction: row;  
-    padding: 1rem;
-    gap: 1rem;
-    margin-top: 1rem; 
-    height: calc(100vh - 80px);  
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  gap: 1rem;
+  margin-top: 1rem;
+  height: calc(100vh - 80px);
 }
 
-#Search_filter_container {
-    width: 300px;
-    position: sticky;
-    top: 80px;  
-    height: 100%;  
-    padding: 1rem;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+#Search_filter_container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
+#Search_filter_container label.labels {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+  font-size: 1.2rem;
+}
+
+#Search_filter_container select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#Search_filter_container fieldset {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+}
+
+#Search_filter_container legend {
+  font-size: 1.2rem;
+  padding: 0 5px;
+}
+
+#Search_filter_container fieldset label {
+  display: block;
+  margin: 8px 0;
+}
+
+#Search_filter_container fieldset .labels {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.labels {
+  color: black;
+  font-size: 1.5rem;
+}
+
+button {
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
 
 #Queried_recipe_container {
-    flex: 1;  
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    justify-content: center;
-    height: 100%;  
-    overflow-y: auto;  
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  height: 100%;
+  overflow-y: auto;
 }
 
-
 .recipe-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-    text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
 }
 
 .recipe-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .recipe-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .recipe-card h3 {
-    color: black;
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
+  color: black;
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
 }
 
 .recipe-card p {
-    padding: 0 1rem 1rem;
-    font-size: 0.9rem;
-    color: black;
+  padding: 0 1rem 1rem;
+  font-size: 0.9rem;
+  color: black;
+}
+
+.shopping-list {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#shopping-items {
+  padding: 0;
+  list-style-type: none;
+}
+
+#shopping-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+#shopping-items li span {
+  flex: 1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: calc(100% - 30px);
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 8px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
+  body {
+    flex-direction: column;
+  }
 
-    .main-content {
-        flex-direction: column;  
-    }
+  .main-content {
+    flex-direction: column;
+  }
 
-    #Search_filter_container {
-        width: 100%;
-        position: static; 
-        height: auto;  
-    }
+  #Search_filter_container {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
 
-    #Queried_recipe_container {
-        grid-template-columns: 1fr;  
-        height: auto;  
-    }
+  #Queried_recipe_container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
 }
