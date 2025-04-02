@@ -9,18 +9,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-.search{
-    background-color: black;
-    border: none;
-    border-radius: 5px;
-    color: white;    
-    padding:10px;
-
-}
-#searchBtn{
-    background-color: white;
-    padding:8px;
-}
 
 .main-content {
   display: flex;

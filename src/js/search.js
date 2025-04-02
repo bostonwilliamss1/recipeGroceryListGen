@@ -34,11 +34,13 @@ async function fetchRecipes(query = "") {
   const mealType = mealTypeSelect.value !== "null" ? mealTypeSelect.value : "";
 
   try {
+
     const searchResponse = await fetch(
       `${API_URL}/complexSearch?apiKey=${API_KEY}&query=${query}&cuisine=${cuisine}&diet=${diet}&type=${mealType}&number=10`
     );
     const searchData = await searchResponse.json();
     
+   
     const recipePromises = searchData.results.map(async (recipePreview) => {
       const detailResponse = await fetch(
         `${API_URL}/${recipePreview.id}/information?apiKey=${API_KEY}`
@@ -114,7 +116,7 @@ function loadShoppingList() {
         <button class="remove-item" data-item="${item}">✕</button>
       </li>
     `).join('');
-    
+
     document.querySelectorAll(".remove-item").forEach(button => {
       button.addEventListener("click", (e) => {
         const itemToRemove = e.target.getAttribute("data-item");
