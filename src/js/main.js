@@ -1,17 +1,18 @@
+// ==== Imports ====
 import "../style.css";
 import "../css/style.css";
 import { hideSearchBar } from "./header.mjs";
 
+// ==== Constants ====
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = `${import.meta.env.VITE_API_URL}&apiKey=${API_KEY}`;
+
+// ==== Fetch & Display Recipes ====
 
 async function fetchRecipes() {
   try {
     const response = await fetch(API_URL);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
     displayRecipes(data.recipes);
   } catch (error) {
@@ -58,6 +59,8 @@ function displayRecipes(recipes) {
     });
   });
 }
+
+// ==== Shopping List Management ====
 
 function addToShoppingList(ingredients) {
   const shoppingList = document.querySelector("#shopping-items");
@@ -108,19 +111,9 @@ function loadShoppingList() {
 
     listItem.appendChild(document.createTextNode(item));
     listItem.appendChild(removeButton);
-
     shoppingList.appendChild(listItem);
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const navbar = document.getElementById("navbar");
-
-  hamburger.addEventListener("click", () => {
-    navbar.classList.toggle("active");
-  });
-});
 
 function updateLocalStorage() {
   if (currentUsername) {
@@ -131,7 +124,10 @@ function updateLocalStorage() {
   }
 }
 
+// ==== Search ====
+
 const searchForm = document.querySelector("#search");
+
 if (searchForm) {
   searchForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -146,6 +142,21 @@ if (searchForm) {
     }
   });
 }
+
+// ==== Hamburger Menu Toggle ====
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerIcon = document.getElementById("hamburgerIcon");
+  const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+  if (hamburgerIcon && hamburgerMenu) {
+    hamburgerIcon.addEventListener("click", () => {
+      hamburgerMenu.classList.toggle("active");
+    });
+  }
+});
+
+// ==== Init on Page Load ====
 
 function init() {
   fetchRecipes();

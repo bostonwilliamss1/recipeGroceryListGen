@@ -1,3 +1,5 @@
+/* ==== Base Styles ==== */
+
 html {
   scrollbar-width: none;
 }
@@ -23,30 +25,17 @@ footer {
   width: 100%;
 }
 
+/* ==== Hero Section ==== */
+
 .hero-banner {
   background-image: url("/images/banner-images/pasta4-7890670_1280.jpg");
+  background-size: cover;
+  background-position: center;
   width: 100%;
   height: 400px;
 }
 
-.shopping-list {
-  grid-column: 1 / 2;
-  margin-right: 30px;
-}
-
-.recipes {
-  grid-column: 2 / 3;
-}
-
-.shopping-list h2,
-.recipes h2 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.filters {
-  grid-column: 3/4;
-}
+/* ==== Header ==== */
 
 header {
   display: flex;
@@ -65,6 +54,8 @@ header {
   gap: 30px;
   flex-wrap: wrap;
 }
+
+/* ==== Search ==== */
 
 #search {
   display: flex;
@@ -91,9 +82,23 @@ header {
   height: 25px;
 }
 
+/* ==== Navigation (Desktop + Mobile) ==== */
+
 .navbar {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+}
+
+.navbar.active {
   display: flex;
-  gap: 20px;
+}
+
+.navbar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
 }
 
 .navbar a {
@@ -109,6 +114,46 @@ header {
   background-color: rgb(18, 85, 36);
   color: white;
 }
+
+/* Hamburger icon */
+
+.hamburger-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger-icon div {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+}
+
+/* ==== Shopping List & Recipes ==== */
+
+.shopping-list {
+  grid-column: 1 / 2;
+  margin-right: 30px;
+}
+
+.recipes {
+  grid-column: 2 / 3;
+}
+
+.shopping-list h2,
+.recipes h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#recipe-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* ==== Shopping Items ==== */
 
 #shopping-items {
   list-style: none;
@@ -142,79 +187,31 @@ header {
   transform: scale(1.2);
 }
 
-/* Hide menu on small screens */
-.navbar {
-  display: none;
-  flex-direction: column;
-}
-
-/* Hamburger icon styling */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 4px 0;
-}
-
-/* Show nav when active */
-.navbar.active {
-  display: flex;
-}
-
-#recipe-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
+/* ==== Media Queries ==== */
 
 @media screen and (min-width: 761px) {
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(240, 199, 174);
     padding: 20px 40px;
     flex-wrap: nowrap;
-    box-shadow: 0px 0px 13px 11px rgba(0, 0, 0, 0.3);
-    z-index: 2;
-  }
-
-  .headerInfo {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
-
-  #search {
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
 
   .navbar {
     display: flex !important;
     flex-direction: row;
     gap: 20px;
+    width: auto;
   }
 
-  .hamburger {
+  .navbar nav {
+    flex-direction: row;
+  }
+
+  .hamburger-icon {
     display: none;
   }
 }
 
 @media screen and (max-width: 760px) {
-  #recipe-container {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 10px;
-  }
-
   header {
     flex-direction: column;
     align-items: flex-start;
@@ -236,7 +233,7 @@ header {
     max-width: 100%;
   }
 
-  .hamburger {
+  .hamburger-icon {
     display: flex;
     margin-left: auto;
     margin-right: 10px;
@@ -244,8 +241,6 @@ header {
 
   .hero-banner {
     height: 200px;
-    background-size: cover;
-    background-position: center;
   }
 
   main {
