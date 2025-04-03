@@ -1,5 +1,7 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = "https://api.spoonacular.com/recipes";
+const USE_MOCK_DATA = false;
+
 const recipeContainer = document.getElementById("Queried_recipe_container");
 const cuisineSelect = document.getElementById("cuisine");
 const dietCheckboxes = document.querySelectorAll("input[name='diet']");
@@ -10,7 +12,13 @@ const shoppingItems = document.getElementById("shopping-items");
 
 document.addEventListener("DOMContentLoaded", () => {
   attachEventListeners();
-  fetchRecipes();
+  const query = getQueryParam("query");
+  if (query) {
+    document.querySelector(".search").value = query;
+    fetchRecipes(query);
+  } else {
+    fetchRecipes();
+  }
   loadShoppingList();
 });
 
@@ -26,6 +34,39 @@ function attachEventListeners() {
 }
 
 async function fetchRecipes(query = "") {
+  if (USE_MOCK_DATA) {
+    const mockData = [
+      {
+        title: "Mock Pizza",
+        image: "https://via.placeholder.com/150",
+        servings: 2,
+        readyInMinutes: 20,
+        extendedIngredients: [
+          { original: "1 pizza base" },
+          { original: "100g mozzarella" },
+        ],
+      },
+      {
+        title: "Mock Salad",
+        image: "https://via.placeholder.com/150",
+        servings: 1,
+        readyInMinutes: 10,
+        extendedIngredients: [
+          { original: "Lettuce" },
+          { original: "Cherry tomatoes" },
+          { original: "Olive oil" },
+        ],
+      },
+    ];
+
+    const filtered = mockData.filter((r) =>
+      r.title.toLowerCase().includes(query.toLowerCase())
+    );
+
+    displayRecipes(filtered);
+    return;
+  }
+
   const cuisine = cuisineSelect.value !== "null" ? cuisineSelect.value : "";
   const diet = Array.from(dietCheckboxes)
     .filter((checkbox) => checkbox.checked)
@@ -144,17 +185,3 @@ function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(name);
 }
-document.addEventListener("DOMContentLoaded", async () => {
-  const query = getQueryParam("query");
-
-  if (query) {
-    document.addEventListener("DOMContentLoaded", () => {
-      const query = getQueryParam("query");
-
-      if (query) {
-        document.querySelector(".search").value = query;
-        fetchRecipes(query);
-      }
-    });
-  }
-});
