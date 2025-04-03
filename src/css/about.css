@@ -1,0 +1,317 @@
+/* About Us css */
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .about-section {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .about-text {
+        flex: 2;
+        margin-left:70px;
+    }
+}
+
+
+.about-image {
+    flex: 1;
+    max-width: 100%;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    /* flex: 2; */
+    padding: 1.5rem;
+}
+
+.about-text h1 {
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+}
+
+.about-text p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.interests {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left:70px;
+}
+
+.interests h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.interests-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.interest-tag {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.interest-tag i {
+    color: #e67e22;
+}
+
+/* Suggestion Form Styles */
+.suggestion-form {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.suggestion-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.error-message {
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.success-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    display: none;
+}
+
+.btn {
+    background-color: #3c763d;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background-color: #3c763d;
+}
+
+
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+@media screen and (min-width: 761px) {
+    main {
+        display: grid;
+        /* grid-template-columns: 1fr 2fr; */
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 40px auto;
+        max-width: 1200px;
+        padding: 0 20px;
+    }
+    
+    .shopping-list {
+        grid-column: 1 / 2;
+    }
+    
+    .recipes {
+        grid-column: 2 / 3;
+    }
+}
+
+/* mobile screen */
+@media screen and (max-width: 760px) {
+    header {
+        position: relative;
+        padding: 15px;
+    }
+    
+    .headerInfo {
+        width: 100%;
+    }
+    
+    .hamburger-icon {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 10;
+    }
+    
+    /* navigation menu*/
+    .navbar {
+        display: none;
+        background-color: rgb(240, 199, 174);
+        padding: 10px 0;
+        width: 100%;
+    }
+    
+    .navbar.active {
+        display: flex;
+    }
+    
+    main {
+        margin: 20px 10px;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .form-control {
+        font-size: 16px;
+    }
+}
+
+/* suggestion-form for big screen*/
+@media (min-width: 768px) {
+    .suggestion-form {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.8rem;
+    }
+    
+    .btn {
+        width: auto;
+        min-width: 200px;
+        display: block;
+        margin: 1.5rem auto 0;
+    }
+}
+
+/* for big screen */
+@media (min-width: 1200px) {
+    .suggestion-form {
+        max-width: 1000px;
+    }
+}
+
+
+/* footer */
+@media (min-width: 761px) {
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 40px;
+    }
+    
+    footer p {
+        margin-bottom: 15px;
+      }
+      
+      footer .social-links {
+        margin: 0; 
+        justify-content: flex-start;
+        text-align: left;
+      }
+}
+
+
+/* footer for mobile */
+@media (max-width: 760px) {
+    footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    footer p {
+        margin-bottom: 10px;
+    }
+    
+    footer .social-links {
+        justify-content: center;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
