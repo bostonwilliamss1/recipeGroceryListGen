@@ -11,12 +11,14 @@
     />
     <title>Nom Nom List</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="/src/css/style.css" />
     <link rel="stylesheet" href="/src/css/about.css" />
-    <script type="module" src="main.js" defer></script>
+    <script type="module" src="../src/js/main.js" defer></script>
     <script type="module" src="/src/js/about.js" defer></script>
-
   </head>
   <body>
     <header>
@@ -53,74 +55,98 @@
 
     <main class="main-content">
       <div class="container">
-          <section class="about-section">
-              <!-- <div class="about-image">
+        <section class="about-section">
+          <!-- <div class="about-image">
                   <img src="/api/placeholder/600/800" alt="About Me">
               </div> -->
-              <div class="about-text">
-                  <h1>About Us</h1>
-                  <h3>Hello!</h3>
+          <div class="about-text">
+            <h1>About Us</h1>
+            <h3>Hello!</h3>
 
-                   <p>Welcome to NomNomList! </p>
-                   <p></p>
-                   <p></p>
-              </div>
-          </section>
-
-          <section class="suggestion-form">
-              <h2>Share Your Suggestions</h2>
-              <div class="success-message" id="success-message">
-                  Thank you for your suggestion! I appreciate your feedback.
-              </div>
-              <form id="suggestionForm">
-                  <div class="form-group">
-                      <label for="name">Your Name</label>
-                      <input type="text" id="name" class="form-control" required>
-                      <div class="error-message" id="name-error">Please enter your name</div>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label for="email">Your Email</label>
-                      <input type="email" id="email" class="form-control" required>
-                      <div class="error-message" id="email-error">Please enter a valid email address</div>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label for="category">Suggestion Category</label>
-                      <select id="category" class="form-control" required>
-                          <option value="">Select a category</option>
-                          <option value="recipe">Recipe Idea</option>
-                          <option value="content">Content Suggestion</option>
-                          <option value="feedback">General Feedback</option>
-                          <option value="collaboration">Collaboration Opportunity</option>
-                      </select>
-                      <div class="error-message" id="category-error">Please select a category</div>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label for="suggestion">Your Suggestion</label>
-                      <textarea id="suggestion" class="form-control" required></textarea>
-                      <div class="error-message" id="suggestion-error">Please enter your suggestion</div>
-                  </div>
-                  
-                  <button type="submit" class="btn btn-block">Submit Suggestion</button>
-              </form>
-          </section>
-
-          <section>
-            <div class="interests">
-              <h2>My Culinary Interests</h2>
-              <div class="interests-list">
-                  <span class="interest-tag"><i class="fas fa-leaf"></i> Farm-to-Table</span>
-                  <span class="interest-tag"><i class="fas fa-globe-americas"></i> Global Cuisines</span>
-                  <span class="interest-tag"><i class="fas fa-bread-slice"></i> Artisan Baking</span>
-                  <span class="interest-tag"><i class="fas fa-seedling"></i> Sustainable Cooking</span>
-                  <span class="interest-tag"><i class="fas fa-utensils"></i> Food Photography</span>
-              </div>
+            <p>Welcome to NomNomList!</p>
+            <p></p>
+            <p></p>
           </div>
-          </section>
+        </section>
+
+        <section class="suggestion-form">
+          <h2>Share Your Suggestions</h2>
+          <div class="success-message" id="success-message">
+            Thank you for your suggestion! I appreciate your feedback.
+          </div>
+          <form id="suggestionForm">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" class="form-control" required />
+              <div class="error-message" id="name-error">
+                Please enter your name
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" class="form-control" required />
+              <div class="error-message" id="email-error">
+                Please enter a valid email address
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Suggestion Category</label>
+              <select id="category" class="form-control" required>
+                <option value="">Select a category</option>
+                <option value="recipe">Recipe Idea</option>
+                <option value="content">Content Suggestion</option>
+                <option value="feedback">General Feedback</option>
+                <option value="collaboration">Collaboration Opportunity</option>
+              </select>
+              <div class="error-message" id="category-error">
+                Please select a category
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="suggestion">Your Suggestion</label>
+              <textarea
+                id="suggestion"
+                class="form-control"
+                required
+              ></textarea>
+              <div class="error-message" id="suggestion-error">
+                Please enter your suggestion
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-block">
+              Submit Suggestion
+            </button>
+          </form>
+        </section>
+
+        <section>
+          <div class="interests">
+            <h2>My Culinary Interests</h2>
+            <div class="interests-list">
+              <span class="interest-tag"
+                ><i class="fas fa-leaf"></i> Farm-to-Table</span
+              >
+              <span class="interest-tag"
+                ><i class="fas fa-globe-americas"></i> Global Cuisines</span
+              >
+              <span class="interest-tag"
+                ><i class="fas fa-bread-slice"></i> Artisan Baking</span
+              >
+              <span class="interest-tag"
+                ><i class="fas fa-seedling"></i> Sustainable Cooking</span
+              >
+              <span class="interest-tag"
+                ><i class="fas fa-utensils"></i> Food Photography</span
+              >
+            </div>
+          </div>
+        </section>
       </div>
-  </main>
+    </main>
 
     <footer>
       <p>&copy; 2025 Grocery Organizer</p>
