@@ -1,21 +1,31 @@
+// ==== Imports ====
 import "../style.css";
 import "../css/style.css";
-import { hideSearchBar } from "./header.mjs";
 
+// ==== Constants ====
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = `${import.meta.env.VITE_API_URL}&apiKey=${API_KEY}`;
+const recipeContainer = document.querySelector("#recipe-container");
+
+// ==== Fetch & Display Recipes ====
 
 async function fetchRecipes() {
   try {
     const response = await fetch(API_URL);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
     displayRecipes(data.recipes);
   } catch (error) {
     console.error("Error fetching the recipes:", error);
+
+    if (recipeContainer) {
+      recipeContainer.innerHTML = `
+        <div class="error-message">
+          <h2>😢 Oops! Something went wrong.</h2>
+          <p>We couldn't load recipes from the API. Please try again later.</p>
+        </div>
+      `;
+    }
   }
 }
 
@@ -58,6 +68,8 @@ function displayRecipes(recipes) {
     });
   });
 }
+
+// ==== Shopping List Management ====
 
 function addToShoppingList(ingredients) {
   const shoppingList = document.querySelector("#shopping-items");
@@ -108,23 +120,60 @@ function loadShoppingList() {
 
     listItem.appendChild(document.createTextNode(item));
     listItem.appendChild(removeButton);
-
     shoppingList.appendChild(listItem);
   });
 }
 
-document.querySelector("#search").addEventListener("submit", async (event) => {
+function updateLocalStorage() {
+  if (currentUsername) {
+    localStorage.setItem(
+      "Shopping List" + currentUsername,
+      JSON.stringify(shoppingList)
+    );
+  }
+}
+
+// ==== Search ====
+
+const searchForm = document.querySelector("#search");
+
+if (searchForm) {
+  searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const query = document.querySelector(".search").value.trim();
+    if (query) {
+      try {
+        const data = await fetchRecipesFromAPI(query);
+        displayRecipes(data.results);
+      } catch (error) {
+        console.error("Search error:", error);
+      }
+    }
+  });
+}
+
+document.getElementById("search").addEventListener("submit", (event) => {
   event.preventDefault();
   const query = document.querySelector(".search").value.trim();
   if (query) {
-    try {
-      const data = await fetchRecipesFromAPI(query);
-      displayRecipes(data.results);
-    } catch (error) {
-      console.error("Search error:", error);
-    }
+    window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
   }
 });
+
+// ==== Hamburger Menu Toggle ====
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerIcon = document.getElementById("hamburgerIcon");
+  const hamburgerMenu = document.getElementById("hamburgerMenu");
+
+  if (hamburgerIcon && hamburgerMenu) {
+    hamburgerIcon.addEventListener("click", () => {
+      hamburgerMenu.classList.toggle("active");
+    });
+  }
+});
+
+// ==== Init on Page Load ====
 
 function init() {
   fetchRecipes();
